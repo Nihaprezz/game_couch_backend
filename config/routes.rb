@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
-
+  get '/game/:id', to: 'game#show'
+  get '/released', to: 'game#justReleased'
   
 end
