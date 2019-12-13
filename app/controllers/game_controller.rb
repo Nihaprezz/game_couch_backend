@@ -2,6 +2,8 @@ class GameController < ApplicationController
     require 'rest-client'
     skip_before_action :authorized
 
+    GAMEURL = "https://api.rawg.io/api/games/"
+
     def popular
         today = Date.today.strftime("%Y-%m-%d")
         url = `https://api.rawg.io/api/games?dates=#{today},2019-12-31&ordering=-added`
@@ -17,12 +19,20 @@ class GameController < ApplicationController
 
     def show
         gameID = params[:id]
-        url = "https://api.rawg.io/api/games/" + gameID
+        url = GAMEURL + gameID
         response = RestClient.get("#{url}")
         gameParsed = JSON.parse(response)
 
         render json: gameParsed
     end
 
+    def gameScreenshots
+        gameID = params[:id]
+        url = GAMEURL + gameID + "/screenshots"
+        response = RestClient.get("#{url}")
+        screenshots = JSON.parse(response)
+
+        render json: screenshots
+    end
 
 end
