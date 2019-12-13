@@ -4,7 +4,7 @@ class ApplicationController < ActionController::API
     before_action :authorized
 
     def encode_token(payload)
-        JWT.encode(payload, SECRET_KEY) #secret key may need to be in a helper function which returns the secret key
+        JWT.encode(payload, 'my_s3cr3t') #secret key may need to be in a helper function which returns the secret key
     end
 
     def auth_header
