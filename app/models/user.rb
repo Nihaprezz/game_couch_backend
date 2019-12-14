@@ -2,8 +2,9 @@ class User < ApplicationRecord
     has_secure_password
     validates :username, uniqueness: { case_sensitive: false }
 
-    has_many :liked_games
+    has_many :liked_games, foreign_key: "mainuser_id"
     has_many :games, through: :liked_games 
+    has_many :comments, through: :games
 
     has_many :posts
 
