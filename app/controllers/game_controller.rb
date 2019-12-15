@@ -68,4 +68,13 @@ class GameController < ApplicationController
         
     end
 
+    def search
+        gameSearch = params[:name]
+        url = "https://api.rawg.io/api/games?search=" + gameSearch
+        response = RestClient.get("#{url}")
+        searchParsed = JSON.parse(response)
+
+        render json: searchParsed
+    end
+
 end
