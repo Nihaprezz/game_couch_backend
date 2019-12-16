@@ -4,7 +4,7 @@ class GameController < ApplicationController
 
     GAMEURL = "https://api.rawg.io/api/games/"
 
-    def popular
+    def popular #NOT USING ROUTE... MAY USE LATER ON
         today = Date.today.strftime("%Y-%m-%d")
         url = `https://api.rawg.io/api/games?dates=#{today},2019-12-31&ordering=-added`
     end
@@ -75,6 +75,15 @@ class GameController < ApplicationController
         searchParsed = JSON.parse(response)
 
         render json: searchParsed
+    end
+
+    def topGames
+        year = params[:year]
+        url = "https://api.rawg.io/api/games?dates=#{year}-01-01,#{year}-12-31&ordering=-added"
+        resp = RestClient.get("#{url}")
+        topGames = JSON.parse(resp)
+
+        render json: topGames
     end
 
 end
