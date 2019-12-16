@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
+  # GAME ROUTES
   get '/game/:id', to: 'game#show'
   get '/game_screenshots/:id', to: 'game#gameScreenshots'
   get '/released', to: 'game#justReleased'
@@ -15,4 +16,7 @@ Rails.application.routes.draw do
   get '/game/search/:name', to: 'game#search'
   get '/top_games/:year', to: 'game#topGames'
   get '/games_by_genre/:genre', to: 'game#gamesByGenre'
+
+  #USER ROUTES
+  get '/user/liked_games', to: "user#games"
 end
