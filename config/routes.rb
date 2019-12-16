@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   get '/game/like/:id', to: 'game#liked'
   get '/game/search/:name', to: 'game#search'
   get '/top_games/:year', to: 'game#topGames'
+  get '/games_by_genre/:genre', to: 'game#gamesByGenre'
 end

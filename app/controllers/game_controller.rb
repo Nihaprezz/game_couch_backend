@@ -86,4 +86,12 @@ class GameController < ApplicationController
         render json: topGames
     end
 
+    def gamesByGenre
+        genre = params[:genre]
+        url = "https://api.rawg.io/api/games?genres=" + genre
+        resp = RestClient.get("#{url}")
+        genreGames = JSON.parse(resp)
+        
+        render json: genreGames
+    end
 end
