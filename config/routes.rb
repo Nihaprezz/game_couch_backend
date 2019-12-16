@@ -18,5 +18,5 @@ Rails.application.routes.draw do
   get '/games_by_genre/:genre', to: 'game#gamesByGenre'
 
   #USER ROUTES
-  get '/user/liked_games', to: "user#games"
+  get '/user/all_info', to: "user#allInfo"
 end

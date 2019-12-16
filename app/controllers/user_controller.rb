@@ -1,9 +1,9 @@
 class UserController < ApplicationController
     before_action :authorized
 
-    def games 
+    def allInfo 
         user = User.find(@user.id)
-        render json: user.games
+        render json: {likedGames: user.games, friends: user.friends}
     end
 
 end
