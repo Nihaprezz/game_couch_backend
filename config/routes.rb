@@ -22,4 +22,5 @@ Rails.application.routes.draw do
 
   #POST ROUTES
   post '/posts', to: "post#create"
+  get '/posts', to: "post#all"
 end

@@ -6,7 +6,7 @@ class User < ApplicationRecord
     has_many :games, through: :liked_games 
     has_many :comments, through: :games
 
-    has_many :post
+    has_many :posts, foreign_key: "mainuser_id"
     
     #SELF JOINTS
     # FRIENDSHIPS WORKING NOW! DO NOT MESS UP CODE #
