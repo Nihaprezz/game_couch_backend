@@ -19,4 +19,7 @@ Rails.application.routes.draw do
 
   #USER ROUTES
   get '/user/all_info', to: "user#allInfo"
+
+  #POST ROUTES
+  post '/posts', to: "post#create"
 end
