@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   #USER ROUTES
   get '/user/all_info', to: "user#allInfo"
   get '/user/:id/info', to: "user#info"
+  get '/user/recommendations', to: "user#recommendations"
 
   #POST ROUTES
   post '/posts', to: "post#create"
