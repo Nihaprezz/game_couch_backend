@@ -2,7 +2,6 @@ class PostController < ApplicationController
     before_action :authorized
 
     def create
-
         # FEELING COLUMN WILL NOT BE USED. DOESNT SEEM USEFUL
         user = User.find(@user.id)
         newPost = Post.create(mainuser_id: user.id, content: params[:content])
