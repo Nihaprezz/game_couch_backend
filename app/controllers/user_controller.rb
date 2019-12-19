@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    before_action :authorized, only: [:allInfo, :recommendations]
+    before_action :authorized, only: [:allInfo, :recommendations, :createFollow]
 
     def allInfo 
         user = User.find(@user.id)
@@ -20,5 +20,13 @@ class UserController < ApplicationController
 
         render json: friendsWithoutMain
     end
-    
+
+    def createFollow
+        mainUser = User.find(@user.id)
+        friend = User.find(params[:id])
+        newFriendShip = Friendship.create(mainuser_id: mainUser.id, friend_id: friend.id)
+
+        render json: {joint: newFriendShip, main: newFriendShip.mainuser, friend: newFriendShip.friend}
+    end
+
 end

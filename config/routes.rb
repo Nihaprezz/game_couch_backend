@@ -25,4 +25,7 @@ Rails.application.routes.draw do
   #POST ROUTES
   post '/posts', to: "post#create"
   get '/posts', to: "post#all"
+
+  #CREATE FRIEND
+  post '/friend/:id', to: "user#createFollow"
 end
