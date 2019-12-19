@@ -29,4 +29,8 @@ Rails.application.routes.draw do
 
   #CREATE FRIEND
   post '/friend/:id', to: "user#createFollow"
+
+  #GAME REVIEW ROUTES
+  get '/reviews/:id', to: "review#all"
+  post '/reviews', to: "review#create"
 end
