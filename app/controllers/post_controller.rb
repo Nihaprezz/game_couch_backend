@@ -51,6 +51,9 @@ class PostController < ApplicationController
         render json: {usersPosts: myPosts, usersFriendsPosts: friendsPosts}
     end
 
-
+    def mainuserPosts
+        user = User.find(@user.id)
+        render json: user.posts.reverse()
+    end
     
 end
