@@ -21,13 +21,21 @@ class ReviewController < ApplicationController
         review = params[:review]
         gameId = params[:game_api_id]
         gameFound = Game.find_by(game_api_id: gameId)
-        
-        # if gameFound then 
-        #     newComment = Comment.create(mainuser_id: currentUser.id, game_id: gameFound.id, content: review)
-        #     render json: {}
-        # end
+        image = params[:picture]
+        name = params[:name]
 
-        byebug
+        #if game count create the review with the found game
+        if gameFound then 
+            newComment = Comment.create(mainuser_id: currentUser.id, game_id: gameFound.id, content: review, username: currentUser.username)
+            render json: newComment
+        else
+        #if game not found then create game in db with params passed
+        #and then create the review
+            newGame = Game.create(game_api_id:gameId, picture: image, name: name)
+            newComment = Comment.create(mainuser_id: currentUser.id, game_id: newGame.id, content: review, username: currentUser.username)
+
+            render json: newComment
+        end 
     end
 
 end
