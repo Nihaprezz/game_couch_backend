@@ -29,4 +29,16 @@ class UserController < ApplicationController
         render json: {joint: newFriendShip, main: newFriendShip.mainuser, friend: newFriendShip.friend}
     end
 
+
+    #searching functionality. User will enter a username
+    def search
+        name = params[:name]
+        foundUser = User.find_by(username: name)
+
+        if foundUser then
+            render json: foundUser
+        else 
+            render json: {message: "No User Found"}
+        end
+    end
 end
