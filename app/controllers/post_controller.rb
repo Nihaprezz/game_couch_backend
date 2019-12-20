@@ -55,5 +55,11 @@ class PostController < ApplicationController
         user = User.find(@user.id)
         render json: user.posts.reverse()
     end
+
+    def destroy
+        foundPost = Post.find(params[:id])
+        destroyedPost = foundPost.destroy
+        render json: destroyedPost
+    end
     
 end

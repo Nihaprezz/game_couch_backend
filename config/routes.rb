@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   post '/posts', to: "post#create"
   get '/posts', to: "post#all"
   get '/mainuser_posts', to: "post#mainuserPosts"
+  delete '/posts/:id', to: "post#destroy"
 
   #CREATE FRIEND
   post '/friend/:id', to: "user#createFollow"
