@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    before_action :authorized, only: [:allInfo, :recommendations, :createFollow]
+    before_action :authorized, only: [:allInfo, :recommendations, :createFollow, :destroyFollow]
 
     def allInfo 
         user = User.find(@user.id)
@@ -28,6 +28,15 @@ class UserController < ApplicationController
 
         render json: {joint: newFriendShip, main: newFriendShip.mainuser, friend: newFriendShip.friend}
     end
+
+    def destroyFollow
+        mainUser = User.find(@user.id)
+        friend = User.find(params[:id])
+        foundFriendship = Friendship.where(mainuser_id: mainUser.id, friend_id: friend.id)
+        destroyed = foundFriendship[0].destroy
+        render json: destroyed
+    end
+
 
 
     #searching functionality. User will enter a username

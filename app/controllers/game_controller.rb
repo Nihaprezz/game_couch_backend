@@ -88,6 +88,11 @@ class GameController < ApplicationController
 
     def gamesByGenre
         genre = params[:genre]
+
+        if genre == "rpg" then # catch case only for RPG games.. the API reads it differently 
+            genre = "role-playing-games-rpg"
+        end
+        
         url = "https://api.rawg.io/api/games?genres=" + genre
         resp = RestClient.get("#{url}")
         genreGames = JSON.parse(resp)

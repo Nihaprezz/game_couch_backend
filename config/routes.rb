@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   #CREATE FRIEND
   post '/friend/:id', to: "user#createFollow"
+  delete '/friend/:id', to: "user#destroyFollow"
 
   #GAME REVIEW ROUTES
   get '/reviews/:id', to: "review#all"
