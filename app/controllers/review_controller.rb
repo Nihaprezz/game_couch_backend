@@ -1,5 +1,5 @@
 class ReviewController < ApplicationController
-    before_action :authorized, only: [:create]
+    before_action :authorized, only: [:create, :destroy]
 
     def all 
         gameId = params[:id]
@@ -36,6 +36,12 @@ class ReviewController < ApplicationController
 
             render json: newComment
         end 
+    end
+
+    def destroy
+        foundComment = Comment.find(params[:id])
+        destroyedComment = foundComment.destroy
+        render json: destroyedComment
     end
 
 end

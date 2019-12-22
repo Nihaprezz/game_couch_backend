@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   delete '/friend/:id', to: "user#destroyFollow"
 
   #GAME REVIEW ROUTES
-  get '/reviews/:id', to: "review#all"
+  get '/reviews/:id', to: "review#all" #gets all the reviews relating to the specific game
   post '/reviews', to: "review#create"
+  delete '/review/:id', to: "review#destroy" #destroy the review using the review ID
 end
