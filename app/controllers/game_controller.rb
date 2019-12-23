@@ -39,6 +39,7 @@ class GameController < ApplicationController
         gameID = params[:id]
         gameName = request.headers['Game-Name']
         gameImage = request.headers['Image']
+
         gameInDB = Game.find_by(game_api_id: gameID) #will be the record or nil if not found
 
         if gameInDB then 
