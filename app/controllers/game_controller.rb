@@ -37,8 +37,8 @@ class GameController < ApplicationController
 
     def liked
         gameID = params[:id]
-        gameName = request.headers['Game-Name']
-        gameImage = request.headers['Image']
+        gameName = params[:name]
+        gameImage = params[:image]
 
         gameInDB = Game.find_by(game_api_id: gameID) #will be the record or nil if not found
     
