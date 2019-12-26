@@ -41,7 +41,7 @@ class GameController < ApplicationController
         gameImage = request.headers['Image']
 
         gameInDB = Game.find_by(game_api_id: gameID) #will be the record or nil if not found
-
+    
         if gameInDB then 
             #need to check if the user has already liked the game
             if LikedGame.find_by(mainuser_id: @user.id, game_id: gameInDB.id) then
@@ -51,6 +51,7 @@ class GameController < ApplicationController
                 render json: liked, status: :accepted
             end
         else
+            byebug
             #since game is not in DB it will create a record. 
             newGame = Game.find_or_create_by(game_api_id: gameID, picture: gameImage, name: gameName)
 
