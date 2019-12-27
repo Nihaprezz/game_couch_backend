@@ -51,7 +51,6 @@ class GameController < ApplicationController
                 render json: liked, status: :accepted
             end
         else
-            byebug
             #since game is not in DB it will create a record. 
             newGame = Game.find_or_create_by(game_api_id: gameID, picture: gameImage, name: gameName)
 
