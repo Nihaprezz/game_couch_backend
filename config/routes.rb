@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/user/:id/info', to: "user#info"
   get '/user/recommendations', to: "user#recommendations"
   get '/user/search/:name', to: "user#search"
+  patch '/user/edit', to: "user#edit"
 
   #POST ROUTES
   post '/posts', to: "post#create"

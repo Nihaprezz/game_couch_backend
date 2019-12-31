@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-    before_action :authorized, only: [:allInfo, :recommendations, :createFollow, :destroyFollow]
+    before_action :authorized, only: [:allInfo, :edit, :recommendations, :createFollow, :destroyFollow]
 
     def allInfo 
         user = User.find(@user.id)
@@ -11,6 +11,18 @@ class UserController < ApplicationController
         
         render json: {user_info: profile, likedGames: profile.games, posts: profile.posts, friends: profile.friends}
     end
+
+    def edit
+        user = User.find(@user.id)
+        if params[:password] == "" then
+            user.update(username: params[:user][:username], bio: params[:user][:bio], avatar: params[:user][:avatar], favorite_genre: params[:user][:favorite_genre], location: params[:user][:location])
+        else 
+            user.update(user_params)
+        end
+
+        render json: user.to_json
+    end
+
 
     def recommendations
         currentUser = User.find(@user.id)
@@ -50,4 +62,10 @@ class UserController < ApplicationController
             render json: {message: "No User Found"}
         end
     end
+
+    private 
+    def user_params
+        params.require(:user).permit(:username, :password, :bio, :avatar, :favorite_genre, :location)
+    end
+
 end
